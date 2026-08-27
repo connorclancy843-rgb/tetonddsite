@@ -23,10 +23,11 @@ as-is. Point the project's root at this repo and deploy. Custom domain: tetondd.
 
 ## Open content TODOs
 
-The page ships with a few bracketed placeholders to fill in with real numbers:
+Text placeholders are filled (timeline, ~4,000 sq ft per home, 10+ years of local
+relationships). Still outstanding:
 
-- `[ADD RANGE]` — typical ground-break-to-closing timeline (Landowners lane).
-- `[SQ FT] · [BD/BA]` — specs on each home in the Selected work schedule.
-- `[ADD]` — years of local relationships (The valley section).
-- Photo slots (hero, interior, detail, aerial, portrait) are placeholders marked
-  in the markup, waiting on real photography.
+- **Photography** — the hero, interior, detail, aerial, and portrait slots are still
+  placeholders marked in the markup, waiting on real images.
+- **Per-home specs (optional)** — every home in the Selected work schedule currently
+  reads "± 4,000 sq ft". Swap in exact square footage and bed/bath per home when
+  available for stronger, non-templated proof.
