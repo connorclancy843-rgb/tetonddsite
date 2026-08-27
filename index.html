@@ -357,6 +357,8 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 }
 .tdd-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .tdd-form__note{font-size:13px;color:rgba(247,248,245,.5);margin:2px 0 0}
+.tdd-form__status{font-size:14px;color:#E4A78C;margin:0}
+.tdd-submit[disabled]{opacity:.6;cursor:default;transform:none}
 
 /* reveal */
 .r{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
@@ -552,8 +554,8 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
       <h2 class="tdd-h2">Bring us a lot or bring us capital.</h2>
       <p class="tdd-contact__p">Tell us the parcel or the size of the commitment and we'll come back with a concept, a schedule and a proposed split. No obligation, and we'll tell you straight if the site doesn't pencil.</p>
     </div>
-    <div class="tdd-contact__grid" style="grid-template-columns:1fr;max-width:640px">
-      <form class="tdd-form r" action="FORMSPREE_ENDPOINT" method="POST" hidden>
+    <div class="tdd-contact__grid">
+      <form class="tdd-form r" id="tdd-inquiry" action="https://formspree.io/f/xzebpwob" method="POST">
         <div class="tdd-field">
           <label for="f-name">Name</label>
           <input id="f-name" name="name" type="text" autocomplete="name" required>
@@ -584,8 +586,14 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
         <input type="hidden" name="_subject" value="New inquiry from tetondd.com">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <button class="tdd-submit" type="submit">Send inquiry</button>
+        <p class="tdd-form__status" role="alert" aria-live="polite" hidden></p>
         <p class="tdd-form__note">We'll reply within a business day. Prefer to talk? Details are on the right.</p>
       </form>
+      <div class="tdd-form__done r" id="tdd-done" hidden>
+        <p class="tdd-eyebrow" style="margin-bottom:14px">Message sent</p>
+        <p style="font-family:var(--display);font-size:clamp(24px,2.8vw,32px);font-weight:300;color:var(--paper);line-height:1.2;margin:0 0 12px">Thank you — we'll be in touch.</p>
+        <p class="tdd-form__note">We reply within a business day. For anything urgent, call (208) 970-4002.</p>
+      </div>
       <div class="r">
         <ul class="tdd-lines">
           <li><small>Email</small><a href="mailto:clancy@tetondd.com">clancy@tetondd.com</a></li>
@@ -660,6 +668,40 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     });
   },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(e){io.observe(e)});
+})();
+/* ---- inquiry form: AJAX submit to Formspree, inline success/error ---- */
+(function(){
+  var form = document.getElementById('tdd-inquiry');
+  if(!form) return;
+  var btn = form.querySelector('.tdd-submit');
+  var status = form.querySelector('.tdd-form__status');
+  var done = document.getElementById('tdd-done');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.hidden = true; status.textContent = '';
+    var label = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {'Accept': 'application/json'}
+    }).then(function(res){
+      if(res.ok){
+        form.hidden = true;
+        done.hidden = false;
+        done.scrollIntoView({block:'nearest', behavior:'smooth'});
+      } else {
+        return res.json().then(function(d){
+          var msg = (d && d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Something went wrong. Please email clancy@tetondd.com.';
+          throw new Error(msg);
+        });
+      }
+    }).catch(function(err){
+      status.hidden = false;
+      status.textContent = (err && err.message) ? err.message : 'Could not send — please email clancy@tetondd.com.';
+      btn.disabled = false; btn.textContent = label;
+    });
+  });
 })();
 </script>
 
