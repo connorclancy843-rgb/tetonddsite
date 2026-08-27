@@ -260,7 +260,7 @@ a:focus-visible,button:focus-visible{
 
 .tdd-schedule{margin-top:56px;border-top:1px solid rgba(247,248,245,.2)}
 .tdd-row{
-  display:grid;grid-template-columns:60px 1fr 200px 150px 120px;
+  display:grid;grid-template-columns:52px 1fr 1fr 160px;
   gap:22px;align-items:center;
   padding:26px 0;border-bottom:1px solid rgba(247,248,245,.2);
   text-decoration:none;color:inherit;
@@ -275,6 +275,8 @@ a:focus-visible,button:focus-visible{
   justify-self:start;border:1px solid rgba(247,248,245,.35);padding:5px 11px;color:rgba(247,248,245,.8);
 }
 .tdd-row__status--sold{border-color:var(--brass);color:var(--brass)}
+.tdd-viewall{display:inline-block;margin-top:38px;font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;color:var(--paper);border-bottom:1px solid var(--brass);padding-bottom:5px}
+.tdd-viewall:hover{color:var(--brass)}
 @media(max-width:900px){
   .tdd-row{grid-template-columns:44px 1fr;gap:6px 16px}
   .tdd-row__meta,.tdd-row__status{grid-column:2}
@@ -415,7 +417,7 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
     <div class="tdd-nav__links" id="tdd-menu">
       <a href="/landowners">Landowners</a>
       <a href="/investors">Investors</a>
-      <a href="#work">Work</a>
+      <a href="/projects">Projects</a>
       <a href="#process">Process</a>
       <a href="#team">Team</a>
       <a class="tdd-nav__cta" href="#contact">Start a conversation</a>
@@ -473,53 +475,48 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 <section class="tdd-band tdd-dark" id="work">
   <div class="tdd-wrap">
     <p class="tdd-eyebrow r">Selected work</p>
-    <h2 class="tdd-h2 r">Sold, and under construction.</h2>
-    <p class="tdd-lede r">Homes this team has carried — and is carrying — from raw lot toward closing across Teton Valley.</p>
+    <h2 class="tdd-h2 r">Homes underway across the valley.</h2>
+    <p class="tdd-lede r">Every home below is taken from raw lot toward closing by this team — design, permitting, construction and sale under one roof.</p>
 
     <div class="tdd-schedule r">
-      <a class="tdd-row" href="#contact">
+      <a class="tdd-row" href="/projects">
         <div class="tdd-row__idx">01</div>
-        <div class="tdd-row__name">53 Warm Creek Lane</div>
-        <div class="tdd-row__meta">Teton Springs · Victor, ID</div>
-        <div class="tdd-row__meta">± 4,000 sq ft · 5 bd / 5.5 ba</div>
-        <div class="tdd-row__status tdd-row__status--sold">Sold</div>
-      </a>
-      <a class="tdd-row" href="#contact">
-        <div class="tdd-row__idx">02</div>
-        <div class="tdd-row__name">681 Lucia Lane</div>
-        <div class="tdd-row__meta">Victor, ID</div>
-        <div class="tdd-row__meta">± 4,000 sq ft · 5 bd / 5.5 ba</div>
-        <div class="tdd-row__status">Under construction</div>
-      </a>
-      <a class="tdd-row" href="#contact">
-        <div class="tdd-row__idx">03</div>
         <div class="tdd-row__name">88 Hastings Drive</div>
         <div class="tdd-row__meta">Victor, ID</div>
-        <div class="tdd-row__meta">± 4,000 sq ft · 5 bd / 5.5 ba</div>
         <div class="tdd-row__status">Under construction</div>
       </a>
-      <a class="tdd-row" href="#contact">
+      <a class="tdd-row" href="/projects">
+        <div class="tdd-row__idx">02</div>
+        <div class="tdd-row__name">90 Hastings Drive</div>
+        <div class="tdd-row__meta">Victor, ID</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+      <a class="tdd-row" href="/projects">
+        <div class="tdd-row__idx">03</div>
+        <div class="tdd-row__name">681 Lucia Lane</div>
+        <div class="tdd-row__meta">Victor, ID</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+      <a class="tdd-row" href="/projects">
         <div class="tdd-row__idx">04</div>
-        <div class="tdd-row__name">475 Silver Fox</div>
+        <div class="tdd-row__name">475 Silver Fox Lane</div>
         <div class="tdd-row__meta">Driggs, ID</div>
-        <div class="tdd-row__meta">± 4,000 sq ft · 5 bd / 5.5 ba</div>
         <div class="tdd-row__status">Under construction</div>
       </a>
-      <a class="tdd-row" href="#contact">
+      <a class="tdd-row" href="/projects">
         <div class="tdd-row__idx">05</div>
         <div class="tdd-row__name">6192 Peregrine Drive</div>
         <div class="tdd-row__meta">Teton Valley, ID</div>
-        <div class="tdd-row__meta">± 4,000 sq ft · 5 bd / 5.5 ba</div>
         <div class="tdd-row__status">Under construction</div>
       </a>
-      <a class="tdd-row" href="#contact">
+      <a class="tdd-row" href="/projects">
         <div class="tdd-row__idx">06</div>
-        <div class="tdd-row__name">5441 Painted Pony</div>
+        <div class="tdd-row__name">5441 Painted Pony Drive</div>
         <div class="tdd-row__meta">Teton Valley, ID</div>
-        <div class="tdd-row__meta">± 4,000 sq ft · 5 bd / 5.5 ba</div>
         <div class="tdd-row__status">Under construction</div>
       </a>
     </div>
+    <a class="tdd-viewall r" href="/projects">View all projects →</a>
 
     <div class="tdd-gallery r">
       <img class="tdd-shot tdd-shot--wide" src="img/hero.jpg" alt="88 Hastings Drive spec home at dusk with the Tetons behind it, Victor, Idaho" loading="lazy" decoding="async" width="1600" height="700">
