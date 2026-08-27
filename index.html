@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teton Development &amp; Design — Spec home development in Teton Valley, Idaho</title>
+<meta name="description" content="Teton Development &amp; Design builds spec homes in Victor and Driggs, Idaho. Landowners partner their lot instead of selling it. Capital partners fund the build. We handle design through closing.">
+<meta property="og:title" content="Teton Development &amp; Design">
+<meta property="og:description" content="Spec home development in Teton Valley, Idaho. Partner your land or your capital.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tetondd.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --snowlight:#EDEEEA;
+  --paper:#F7F8F5;
+  --granite:#22262A;
+  --spruce:#2F3A35;
+  --brass:#A8823C;
+  --slate:#6E757A;
+  --hair:rgba(34,38,42,.16);
+
+  --display:"Newsreader",Georgia,serif;
+  --body:"Archivo",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --gut:clamp(20px,5vw,72px);
+  --stack:clamp(64px,9vw,132px);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--snowlight);
+  color:var(--granite);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- shared type ---------- */
+.tdd-eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--brass);
+  margin:0 0 22px;
+}
+.tdd-eyebrow--slate{color:var(--slate)}
+.tdd-h2{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:clamp(30px,4.6vw,52px);
+  line-height:1.1;
+  letter-spacing:-.015em;
+  margin:0 0 20px;
+}
+.tdd-lede{
+  font-size:clamp(17px,1.9vw,20px);
+  color:var(--slate);
+  max-width:56ch;
+  margin:0;
+}
+.tdd-wrap{max-width:1220px;margin:0 auto;padding:0 var(--gut)}
+.tdd-band{padding:var(--stack) 0}
+
+/* focus */
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--brass);
+  outline-offset:4px;
+}
+
+/* ---------- nav ---------- */
+.tdd-nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(237,238,234,.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hair);
+}
+.tdd-nav__in{
+  max-width:1220px;margin:0 auto;padding:14px var(--gut);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.tdd-mark{
+  font-family:var(--display);
+  font-size:19px;letter-spacing:.01em;text-decoration:none;line-height:1.15;
+}
+.tdd-mark span{
+  display:block;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-top:2px;
+}
+.tdd-nav__links{display:flex;align-items:center;gap:26px}
+.tdd-nav__links a{
+  font-size:13.5px;letter-spacing:.02em;text-decoration:none;color:var(--slate);
+}
+.tdd-nav__links a:hover{color:var(--granite)}
+.tdd-nav__cta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--granite);padding:9px 16px;text-decoration:none;color:var(--granite)!important;
+  transition:background .25s,color .25s;
+}
+.tdd-nav__cta:hover{background:var(--granite);color:var(--paper)!important}
+@media(max-width:820px){.tdd-nav__links a:not(.tdd-nav__cta){display:none}}
+
+/* ---------- hero ---------- */
+.tdd-hero{position:relative;overflow:hidden;padding:clamp(70px,11vw,150px) 0 clamp(56px,7vw,96px)}
+#contour{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+#contour path{
+  fill:none;stroke:var(--brass);stroke-width:.85;opacity:.34;
+}
+.tdd-hero__in{position:relative;z-index:1}
+.tdd-hero h1{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:clamp(38px,6.6vw,80px);
+  line-height:1.04;
+  letter-spacing:-.025em;
+  margin:0 0 30px;
+  max-width:15ch;
+}
+.tdd-hero h1 em{font-style:italic;color:var(--brass)}
+.tdd-hero__sub{
+  font-size:clamp(17px,1.9vw,20px);
+  color:var(--slate);max-width:52ch;margin:0 0 38px;
+}
+.tdd-actions{display:flex;flex-wrap:wrap;gap:14px}
+.tdd-btn{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  padding:15px 26px;text-decoration:none;display:inline-block;
+  transition:transform .2s,background .25s,color .25s;
+}
+.tdd-btn:hover{transform:translateY(-2px)}
+.tdd-btn--solid{background:var(--granite);color:var(--paper)}
+.tdd-btn--solid:hover{background:var(--spruce)}
+.tdd-btn--ghost{border:1px solid var(--granite);color:var(--granite)}
+.tdd-btn--ghost:hover{background:var(--granite);color:var(--paper)}
+
+/* elevation datum rule */
+.tdd-datum{
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--slate);
+  margin-top:clamp(48px,7vw,84px);
+}
+.tdd-datum::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+/* ---------- two lanes ---------- */
+.tdd-lanes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:52px}
+@media(max-width:860px){.tdd-lanes{grid-template-columns:1fr}}
+.tdd-lane{background:var(--paper);padding:clamp(28px,3.6vw,46px)}
+.tdd-lane h3{
+  font-family:var(--display);font-weight:400;font-size:clamp(24px,2.7vw,32px);
+  line-height:1.15;margin:0 0 14px;
+}
+.tdd-lane__p{color:var(--slate);margin:0 0 28px;font-size:16px}
+.tdd-terms{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+.tdd-terms li{
+  display:grid;grid-template-columns:104px 1fr;gap:18px;
+  padding:15px 0;border-bottom:1px solid var(--hair);font-size:15.5px;
+}
+.tdd-terms dt,.tdd-terms b{
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brass);font-weight:500;padding-top:3px;
+}
+@media(max-width:480px){.tdd-terms li{grid-template-columns:1fr;gap:5px}}
+.tdd-lane__link{
+  display:inline-block;margin-top:26px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.13em;text-transform:uppercase;text-decoration:none;
+  border-bottom:1px solid var(--brass);padding-bottom:5px;color:var(--granite);
+}
+
+/* ---------- project schedule ---------- */
+.tdd-dark{background:var(--spruce);color:var(--paper)}
+.tdd-dark .tdd-h2{color:var(--paper)}
+.tdd-dark .tdd-lede{color:rgba(247,248,245,.62)}
+.tdd-dark .tdd-eyebrow{color:var(--brass)}
+
+.tdd-schedule{margin-top:56px;border-top:1px solid rgba(247,248,245,.2)}
+.tdd-row{
+  display:grid;grid-template-columns:60px 1fr 200px 150px 120px;
+  gap:22px;align-items:center;
+  padding:26px 0;border-bottom:1px solid rgba(247,248,245,.2);
+  text-decoration:none;color:inherit;
+  transition:padding-left .3s,background .3s;
+}
+.tdd-row:hover{padding-left:14px;background:rgba(247,248,245,.045)}
+.tdd-row__idx{font-family:var(--mono);font-size:11px;color:var(--brass);letter-spacing:.1em}
+.tdd-row__name{font-family:var(--display);font-size:clamp(21px,2.4vw,28px);font-weight:300;line-height:1.15}
+.tdd-row__meta{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:rgba(247,248,245,.58)}
+.tdd-row__status{
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  justify-self:start;border:1px solid rgba(247,248,245,.35);padding:5px 11px;color:rgba(247,248,245,.8);
+}
+.tdd-row__status--sold{border-color:var(--brass);color:var(--brass)}
+@media(max-width:900px){
+  .tdd-row{grid-template-columns:44px 1fr;gap:6px 16px}
+  .tdd-row__meta,.tdd-row__status{grid-column:2}
+  .tdd-row__status{margin-top:8px}
+}
+
+/* photo slots */
+.tdd-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+@media(max-width:820px){.tdd-gallery{grid-template-columns:1fr}}
+.tdd-slot{
+  aspect-ratio:3/2;border:1px dashed rgba(168,130,60,.65);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--brass);text-align:center;padding:20px;
+}
+.tdd-slot span{color:rgba(247,248,245,.45);letter-spacing:.08em;text-transform:none;font-size:11px}
+.tdd-slot--light{border-color:rgba(168,130,60,.6)}
+.tdd-slot--light span{color:var(--slate)}
+.tdd-slot--wide{aspect-ratio:16/7;grid-column:1/-1}
+
+/* ---------- process ---------- */
+.tdd-phases{margin-top:56px;border-top:1px solid var(--hair)}
+.tdd-phase{
+  display:grid;grid-template-columns:150px 1fr 1fr;gap:28px;
+  padding:30px 0;border-bottom:1px solid var(--hair);
+}
+@media(max-width:820px){.tdd-phase{grid-template-columns:1fr;gap:10px}}
+.tdd-phase__tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);padding-top:5px}
+.tdd-phase__h{font-family:var(--display);font-size:clamp(20px,2.2vw,25px);font-weight:400;margin:0;line-height:1.2}
+.tdd-phase__d{color:var(--slate);font-size:15.5px;margin:0}
+
+/* ---------- valley ---------- */
+.tdd-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
+@media(max-width:860px){.tdd-split{grid-template-columns:1fr}}
+.tdd-facts{list-style:none;margin:34px 0 0;padding:0}
+.tdd-facts li{padding:14px 0;border-top:1px solid var(--hair);display:flex;gap:16px;font-size:15.5px}
+.tdd-facts li::before{content:"—";color:var(--brass)}
+
+/* ---------- contact ---------- */
+.tdd-contact{background:var(--granite);color:var(--paper)}
+.tdd-contact .tdd-h2{color:var(--paper);max-width:18ch}
+.tdd-contact__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,80px);align-items:end}
+@media(max-width:860px){.tdd-contact__grid{grid-template-columns:1fr;align-items:start}}
+.tdd-contact__p{color:rgba(247,248,245,.66);max-width:44ch;margin:0}
+.tdd-lines{list-style:none;margin:0;padding:0}
+.tdd-lines li{padding:18px 0;border-top:1px solid rgba(247,248,245,.2)}
+.tdd-lines a{
+  font-family:var(--display);font-size:clamp(19px,2.2vw,26px);font-weight:300;
+  text-decoration:none;color:var(--paper);
+}
+.tdd-lines a:hover{color:var(--brass)}
+.tdd-lines small{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:6px;
+}
+
+footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28px 0 44px;font-size:12.5px}
+.tdd-foot__in{
+  max-width:1220px;margin:0 auto;padding:22px var(--gut) 0;
+  border-top:1px solid rgba(247,248,245,.16);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-family:var(--mono);letter-spacing:.06em;
+}
+
+/* reveal */
+.r{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+.r.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .r{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .tdd-btn:hover,.tdd-row:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="tdd-nav">
+  <div class="tdd-nav__in">
+    <a class="tdd-mark" href="#top">Teton Development &amp; Design<span>Victor · Driggs, Idaho</span></a>
+    <div class="tdd-nav__links">
+      <a href="#partner">Partner</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#valley">The valley</a>
+      <a class="tdd-nav__cta" href="#contact">Start a conversation</a>
+    </div>
+  </div>
+</nav>
+
+<header class="tdd-hero" id="top">
+  <svg id="contour" aria-hidden="true" preserveAspectRatio="none"></svg>
+  <div class="tdd-wrap tdd-hero__in">
+    <p class="tdd-eyebrow">Spec home development · Teton Valley, Idaho</p>
+    <h1>We partner on the land. We build the home. We <em>share the outcome.</em></h1>
+    <p class="tdd-hero__sub">Landowners put a lot in instead of selling it. Capital partners fund the build. We run design, permitting, construction and the sale — and everyone gets paid at closing.</p>
+    <div class="tdd-actions">
+      <a class="tdd-btn tdd-btn--solid" href="#partner">I own land here</a>
+      <a class="tdd-btn tdd-btn--ghost" href="#partner">I want to fund a build</a>
+    </div>
+    <div class="tdd-datum">Elev. 6,200 ft · 43.6°N 111.1°W</div>
+  </div>
+</header>
+
+<section class="tdd-band" id="partner">
+  <div class="tdd-wrap">
+    <p class="tdd-eyebrow r">Two ways in</p>
+    <h2 class="tdd-h2 r">A lot and a check are the only two things<br>we don't already have.</h2>
+    <p class="tdd-lede r">Design, permitting, construction management and the listing are in house. What we look for from the outside is land in the right place and capital that wants to sit behind a real asset.</p>
+
+    <div class="tdd-lanes r">
+      <div class="tdd-lane">
+        <h3>Landowners</h3>
+        <p class="tdd-lane__p">You've been holding a lot in Victor, Driggs or Teton Springs and watching it appreciate slowly. Contributing it to a build turns it into a finished home without you writing a check or managing a contractor.</p>
+        <ul class="tdd-terms">
+          <li><b>You bring</b><span>A buildable lot, free and clear</span></li>
+          <li><b>You keep</b><span>An agreed share of the profit at closing</span></li>
+          <li><b>You avoid</b><span>Capital gains on an outright lot sale, construction risk, and the day-to-day</span></li>
+          <li><b>Timeline</b><span>Ground-break to closing, typically [ADD RANGE] months</span></li>
+        </ul>
+        <a class="tdd-lane__link" href="#contact">Talk about your lot →</a>
+      </div>
+      <div class="tdd-lane">
+        <h3>Capital partners</h3>
+        <p class="tdd-lane__p">We build in cash rather than on construction debt. That means faster closes on land, better leverage with subs, and no interest clock running while the framing goes up. The tradeoff is we need partners instead of a bank.</p>
+        <ul class="tdd-terms">
+          <li><b>You bring</b><span>Committed capital per project or across a portfolio</span></li>
+          <li><b>You get</b><span>A preferred return plus equity in the upside</span></li>
+          <li><b>Security</b><span>Your position is tied to a specific, deeded property</span></li>
+          <li><b>Reporting</b><span>Draw schedules, site progress and budget-to-actual every month</span></li>
+        </ul>
+        <a class="tdd-lane__link" href="#contact">Request the offering →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tdd-band tdd-dark" id="work">
+  <div class="tdd-wrap">
+    <p class="tdd-eyebrow r">Selected work</p>
+    <h2 class="tdd-h2 r">Finished, sold, and standing.</h2>
+    <p class="tdd-lede r">Every home below was taken from raw lot to closing by this team.</p>
+
+    <div class="tdd-schedule r">
+      <a class="tdd-row" href="#contact">
+        <div class="tdd-row__idx">01</div>
+        <div class="tdd-row__name">53 Warm Creek Lane</div>
+        <div class="tdd-row__meta">Teton Springs · Victor, ID</div>
+        <div class="tdd-row__meta">[SQ FT] · [BD/BA]</div>
+        <div class="tdd-row__status tdd-row__status--sold">Sold</div>
+      </a>
+      <a class="tdd-row" href="#contact">
+        <div class="tdd-row__idx">02</div>
+        <div class="tdd-row__name">681 Lucia Lane</div>
+        <div class="tdd-row__meta">Victor, ID</div>
+        <div class="tdd-row__meta">[SQ FT] · [BD/BA]</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+      <a class="tdd-row" href="#contact">
+        <div class="tdd-row__idx">03</div>
+        <div class="tdd-row__name">88 Hastings Drive</div>
+        <div class="tdd-row__meta">Victor, ID</div>
+        <div class="tdd-row__meta">[SQ FT] · [BD/BA]</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+      <a class="tdd-row" href="#contact">
+        <div class="tdd-row__idx">04</div>
+        <div class="tdd-row__name">475 Silver Fox</div>
+        <div class="tdd-row__meta">Driggs, ID</div>
+        <div class="tdd-row__meta">[SQ FT] · [BD/BA]</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+      <a class="tdd-row" href="#contact">
+        <div class="tdd-row__idx">05</div>
+        <div class="tdd-row__name">6192 Peregrine Drive</div>
+        <div class="tdd-row__meta">Teton Valley, ID</div>
+        <div class="tdd-row__meta">[SQ FT] · [BD/BA]</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+      <a class="tdd-row" href="#contact">
+        <div class="tdd-row__idx">06</div>
+        <div class="tdd-row__name">5441 Painted Pony</div>
+        <div class="tdd-row__meta">Teton Valley, ID</div>
+        <div class="tdd-row__meta">[SQ FT] · [BD/BA]</div>
+        <div class="tdd-row__status">Under construction</div>
+      </a>
+    </div>
+
+    <div class="tdd-gallery r">
+      <div class="tdd-slot tdd-slot--wide">Hero photo — 16:7<span>Best finished exterior you have. Dusk, lights on, Tetons behind it.</span></div>
+      <div class="tdd-slot">Interior — 3:2<span>Great room or kitchen, natural light</span></div>
+      <div class="tdd-slot">Detail — 3:2<span>Material close-up: stone, steel, timber</span></div>
+      <div class="tdd-slot">Aerial — 3:2<span>Drone shot showing the lot and the valley</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tdd-band" id="process">
+  <div class="tdd-wrap">
+    <p class="tdd-eyebrow r">How a project runs</p>
+    <h2 class="tdd-h2 r">Land in, keys out.</h2>
+    <p class="tdd-lede r">Five phases. Partners see the same schedule we do, start to finish.</p>
+
+    <div class="tdd-phases r">
+      <div class="tdd-phase">
+        <div class="tdd-phase__tag">Phase 01 · Terms</div>
+        <h4 class="tdd-phase__h">We agree on the split before anything moves</h4>
+        <p class="tdd-phase__d">Lot review, a build concept sized to the site, and a written partnership agreement covering contribution, distribution and timeline.</p>
+      </div>
+      <div class="tdd-phase">
+        <div class="tdd-phase__tag">Phase 02 · Design</div>
+        <h4 class="tdd-phase__h">Plans drawn for what actually sells here</h4>
+        <p class="tdd-phase__d">Architecture, engineering and selections tuned to what Teton Valley buyers pay for — not a plan pulled off a shelf.</p>
+      </div>
+      <div class="tdd-phase">
+        <div class="tdd-phase__tag">Phase 03 · Permit</div>
+        <h4 class="tdd-phase__h">County, HOA and utilities cleared</h4>
+        <p class="tdd-phase__d">We carry the entitlement work, the HOA design review and the utility coordination. Partners don't sit in those meetings.</p>
+      </div>
+      <div class="tdd-phase">
+        <div class="tdd-phase__tag">Phase 04 · Build</div>
+        <h4 class="tdd-phase__h">Construction managed in house</h4>
+        <p class="tdd-phase__d">Our own construction arm runs the job, so schedule and budget stay under one roof. Monthly progress and budget-to-actual go out to every partner.</p>
+      </div>
+      <div class="tdd-phase">
+        <div class="tdd-phase__tag">Phase 05 · Sale</div>
+        <h4 class="tdd-phase__h">Listed, sold, distributed</h4>
+        <p class="tdd-phase__d">Staging, marketing and the listing are ours. Proceeds are distributed per the agreement at closing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tdd-band" id="valley" style="background:var(--paper)">
+  <div class="tdd-wrap tdd-split">
+    <div class="r">
+      <p class="tdd-eyebrow">Why the west slope</p>
+      <h2 class="tdd-h2">We only build where we live.</h2>
+      <p class="tdd-lede">Teton Valley sits over the pass from Jackson with the same mountains and a fraction of the price. Buyers who priced out of Wyoming keep landing here, and the supply of well-built, finished homes hasn't caught up.</p>
+      <ul class="tdd-facts">
+        <li>Victor, Driggs and Teton Springs — the only markets we work in</li>
+        <li>Relationships with the subs, the county and the brokers, built over [ADD] years</li>
+        <li>Construction held in house rather than bid out to a third-party GC</li>
+        <li>Every partner gets the same monthly reporting we run the business on</li>
+      </ul>
+    </div>
+    <div class="r">
+      <div class="tdd-slot tdd-slot--light" style="aspect-ratio:4/5">Portrait photo — 4:5<span>You on site, hard hat, framing behind you. Real beats stock.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tdd-band tdd-contact" id="contact">
+  <div class="tdd-wrap tdd-contact__grid">
+    <div class="r">
+      <p class="tdd-eyebrow">Start a conversation</p>
+      <h2 class="tdd-h2">Bring us a lot or bring us capital.</h2>
+      <p class="tdd-contact__p">Tell us the parcel or the size of the commitment and we'll come back with a concept, a schedule and a proposed split. No obligation, and we'll tell you straight if the site doesn't pencil.</p>
+    </div>
+    <div class="r">
+      <ul class="tdd-lines">
+        <li><small>Email</small><a href="mailto:clancy@tetondd.com">clancy@tetondd.com</a></li>
+        <li><small>Direct</small><a href="tel:+12089704002">(208) 970-4002</a></li>
+        <li><small>Office</small><a href="#contact" style="cursor:default">Victor, Idaho</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="tdd-foot">
+  <div class="tdd-foot__in">
+    <div>Teton Development &amp; Design · A DBA of Heart Acquisitions LLC</div>
+    <div>© <span id="yr"></span> · Victor, Idaho</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---- contour field: nested topographic rings, drawn in on load ---- */
+(function(){
+  var svg = document.getElementById('contour');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = 1000, H = 620;
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+
+  function seeded(s){return function(){s=(s*16807)%2147483647;return s/2147483647;}}
+  var rnd = seeded(90210);
+
+  var cx = W*0.78, cy = H*0.42;
+  var rings = 13;
+  var offsets = [];
+  for(var k=0;k<5;k++) offsets.push(rnd()*Math.PI*2);
+
+  for(var i=0;i<rings;i++){
+    var base = 46 + i*40;
+    var pts = [];
+    for(var a=0;a<=360;a+=6){
+      var rad = a*Math.PI/180;
+      var wob = 1
+        + 0.16*Math.sin(rad*2 + offsets[0] + i*0.22)
+        + 0.10*Math.sin(rad*3 + offsets[1] - i*0.16)
+        + 0.06*Math.sin(rad*5 + offsets[2] + i*0.09);
+      var r = base*wob;
+      pts.push([cx + r*Math.cos(rad)*1.45, cy + r*Math.sin(rad)*0.82]);
+    }
+    var d = 'M'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join('L')+'Z';
+    var path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',d);
+    path.style.opacity = (0.30 - i*0.014).toFixed(3);
+    svg.appendChild(path);
+
+    if(!reduce){
+      var len = 2*Math.PI*base*1.15;
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(.22,.61,.36,1) '+(i*0.075)+'s';
+      (function(p){ requestAnimationFrame(function(){ requestAnimationFrame(function(){ p.style.strokeDashoffset = 0; }); }); })(path);
+    }
+  }
+})();
+
+/* ---- scroll reveal ---- */
+(function(){
+  var els = document.querySelectorAll('.r');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
