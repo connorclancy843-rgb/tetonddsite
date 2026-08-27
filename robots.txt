@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tetondd.com/sitemap.xml
+Sitemap: https://www.tetondd.com/sitemap.xml
