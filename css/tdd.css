@@ -144,6 +144,9 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 .tdd-chip--live{border-color:var(--brass);color:var(--brass)}
 .tdd-chip--sale{background:var(--brass);border-color:var(--brass);color:var(--granite)}
 .tdd-project__blurb{color:var(--slate);font-size:15px;margin:0;max-width:46ch}
+.tdd-project__cta{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;color:var(--granite);border-bottom:1px solid var(--brass);padding-bottom:4px}
+.tdd-project__cta:hover{color:var(--brass)}
+a.tdd-project__imglink{display:block}
 
 /* reveal */
 .r{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
