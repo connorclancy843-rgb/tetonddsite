@@ -1,4 +1,4 @@
-/* Teton Development & Design — shared interior-page script */
+/* Teton Development & Design — shared site script (all pages) */
 (function(){
   var yr=document.getElementById('yr'); if(yr) yr.textContent=new Date().getFullYear();
 
@@ -13,6 +13,12 @@
     });
     menu.querySelectorAll('a').forEach(function(a){
       a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');});
+    });
+    /* keyboard: close the open menu on Escape and return focus to the toggle */
+    document.addEventListener('keydown',function(e){
+      if((e.key==='Escape'||e.key==='Esc')&&nav.classList.contains('open')){
+        nav.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.focus();
+      }
     });
   }
 
@@ -49,4 +55,46 @@
     entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
   },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(e){io.observe(e);});
+})();
+
+/* homepage hero video: pause for reduced-motion visitors (no-op elsewhere) */
+(function(){
+  var v=document.getElementById('tdd-hero-video');
+  if(!v) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ v.autoplay=false; v.pause(); }
+})();
+
+/* homepage inquiry form: AJAX submit to Formspree, inline success/error (no-op elsewhere) */
+(function(){
+  var form=document.getElementById('tdd-inquiry');
+  if(!form) return;
+  var btn=form.querySelector('.tdd-submit');
+  var status=form.querySelector('.tdd-form__status');
+  var done=document.getElementById('tdd-done');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    status.hidden=true; status.textContent='';
+    var label=btn.textContent;
+    btn.disabled=true; btn.textContent='Sending…';
+    fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{'Accept':'application/json'}
+    }).then(function(res){
+      if(res.ok){
+        form.hidden=true;
+        done.hidden=false;
+        done.scrollIntoView({block:'nearest',behavior:'smooth'});
+      } else {
+        return res.json().then(function(d){
+          var msg=(d&&d.errors&&d.errors.map(function(x){return x.message;}).join(', '))||'Something went wrong. Please email clancy@tetondd.com.';
+          throw new Error(msg);
+        });
+      }
+    }).catch(function(err){
+      status.hidden=false;
+      status.textContent=(err&&err.message)?err.message:'Could not send — please email clancy@tetondd.com.';
+      btn.disabled=false; btn.textContent=label;
+    });
+  });
 })();

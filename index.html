@@ -61,140 +61,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/tdd.css">
 <style>
-:root{
-  --snowlight:#EDEEEA;
-  --paper:#F7F8F5;
-  --granite:#22262A;
-  --spruce:#2F3A35;
-  --brass:#A8823C;
-  --slate:#6E757A;
-  --hair:rgba(34,38,42,.16);
+/* Homepage-only styles. The shared base — reset, type scale, nav, buttons,
+   dark sections, footer, focus rings and scroll-reveal — is loaded from
+   /css/tdd.css above. Everything below is either a homepage-unique section
+   or a deliberate homepage override of a shared value. Keep shared
+   components (nav, footer, buttons) in tdd.css so all four pages stay in sync. */
 
-  --display:"Newsreader",Georgia,serif;
-  --body:"Archivo",system-ui,-apple-system,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
-
-  --gut:clamp(20px,5vw,72px);
-  --stack:clamp(64px,9vw,132px);
-}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--snowlight);
-  color:var(--granite);
-  font-family:var(--body);
-  font-size:17px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-img{max-width:100%;display:block}
-a{color:inherit}
-
-/* ---------- shared type ---------- */
-.tdd-eyebrow{
-  font-family:var(--mono);
-  font-size:11px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--brass);
-  margin:0 0 22px;
-}
-.tdd-eyebrow--slate{color:var(--slate)}
-.tdd-h2{
-  font-family:var(--display);
-  font-weight:300;
-  font-size:clamp(30px,4.6vw,52px);
-  line-height:1.1;
-  letter-spacing:-.015em;
-  margin:0 0 20px;
-}
-.tdd-lede{
-  font-size:clamp(17px,1.9vw,20px);
-  color:var(--slate);
-  max-width:56ch;
-  margin:0;
-}
-.tdd-wrap{max-width:1220px;margin:0 auto;padding:0 var(--gut)}
-.tdd-band{padding:var(--stack) 0}
-
-/* focus */
-a:focus-visible,button:focus-visible{
-  outline:2px solid var(--brass);
-  outline-offset:4px;
-}
-
-/* ---------- nav ---------- */
-.tdd-nav{
-  position:sticky;top:0;z-index:50;
-  background:rgba(237,238,234,.86);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--hair);
-}
-.tdd-nav__in{
-  max-width:1220px;margin:0 auto;padding:14px var(--gut);
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
-}
-.tdd-mark{
-  font-family:var(--display);
-  font-size:19px;letter-spacing:.01em;text-decoration:none;line-height:1.15;
-}
-.tdd-mark span{
-  display:block;font-family:var(--mono);font-size:9.5px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-top:2px;
-}
-.tdd-nav__links{display:flex;align-items:center;gap:26px}
-.tdd-nav__links a{
-  font-size:13.5px;letter-spacing:.02em;text-decoration:none;color:var(--slate);
-}
-.tdd-nav__links a:hover{color:var(--granite)}
-.tdd-nav__cta{
-  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  border:1px solid var(--granite);padding:9px 16px;text-decoration:none;color:var(--granite)!important;
-  transition:background .25s,color .25s;
-}
-.tdd-nav__cta:hover{background:var(--granite);color:var(--paper)!important}
-
-/* mobile menu toggle */
-.tdd-navtoggle{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;
-  flex-direction:column;justify-content:center;align-items:center;gap:5px;margin:-6px -8px -6px 0}
-.tdd-navtoggle span{display:block;height:2px;width:23px;background:var(--granite);border-radius:2px;
-  transition:transform .3s ease,opacity .2s ease}
-.tdd-nav.open .tdd-navtoggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.tdd-nav.open .tdd-navtoggle span:nth-child(2){opacity:0}
-.tdd-nav.open .tdd-navtoggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-@media(max-width:820px){
-  .tdd-navtoggle{display:flex}
-  .tdd-nav__links{
-    position:absolute;top:100%;left:0;right:0;
-    background:var(--snowlight);border-bottom:1px solid var(--hair);
-    flex-direction:column;align-items:stretch;gap:0;
-    padding:4px var(--gut) 22px;
-    max-height:0;overflow:hidden;opacity:0;pointer-events:none;
-    transition:max-height .35s ease,opacity .25s ease;
-  }
-  .tdd-nav.open .tdd-nav__links{max-height:84vh;opacity:1;pointer-events:auto}
-  .tdd-nav__links a{padding:15px 2px;font-size:16px;border-bottom:1px solid var(--hair)}
-  .tdd-nav__links a.tdd-nav__cta{margin-top:16px;border:1px solid var(--granite);text-align:center;padding:15px;color:var(--granite)!important}
-}
-@media(max-width:520px){.tdd-mark span{display:none}}
+/* deliberate homepage overrides of shared values */
+:root{--stack:clamp(64px,9vw,132px)}          /* slightly airier bands than interior pages */
+.tdd-h2{font-size:clamp(30px,4.6vw,52px)}     /* larger display scale on the homepage */
+.tdd-lede{max-width:56ch}
+.tdd-actions{margin-top:0}                     /* hero actions sit tight under the sub-head */
 
 /* ---------- video hero band ---------- */
 .tdd-videohero{position:relative;width:100%;height:clamp(300px,64vh,760px);overflow:hidden;background:var(--granite)}
 .tdd-videohero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
-/* ---------- hero ---------- */
+/* ---------- hero (contour + #contour styling come from tdd.css) ---------- */
 .tdd-hero{position:relative;overflow:hidden;padding:clamp(70px,11vw,150px) 0 clamp(56px,7vw,96px)}
-#contour{
-  position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:0;
-}
-#contour path{
-  fill:none;stroke:var(--brass);stroke-width:.85;opacity:.34;
-}
 .tdd-hero__in{position:relative;z-index:1}
 .tdd-hero h1{
   font-family:var(--display);
@@ -210,17 +96,6 @@ a:focus-visible,button:focus-visible{
   font-size:clamp(17px,1.9vw,20px);
   color:var(--slate);max-width:52ch;margin:0 0 38px;
 }
-.tdd-actions{display:flex;flex-wrap:wrap;gap:14px}
-.tdd-btn{
-  font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
-  padding:15px 26px;text-decoration:none;display:inline-block;
-  transition:transform .2s,background .25s,color .25s;
-}
-.tdd-btn:hover{transform:translateY(-2px)}
-.tdd-btn--solid{background:var(--granite);color:var(--paper)}
-.tdd-btn--solid:hover{background:var(--spruce)}
-.tdd-btn--ghost{border:1px solid var(--granite);color:var(--granite)}
-.tdd-btn--ghost:hover{background:var(--granite);color:var(--paper)}
 
 /* elevation datum rule */
 .tdd-datum{
@@ -240,6 +115,7 @@ a:focus-visible,button:focus-visible{
   line-height:1.15;margin:0 0 14px;
 }
 .tdd-lane__p{color:var(--slate);margin:0 0 28px;font-size:16px}
+/* homepage lane terms use a tighter label column than the interior .tdd-terms in tdd.css */
 .tdd-terms{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
 .tdd-terms li{
   display:grid;grid-template-columns:104px 1fr;gap:18px;
@@ -256,12 +132,7 @@ a:focus-visible,button:focus-visible{
   border-bottom:1px solid var(--brass);padding-bottom:5px;color:var(--granite);
 }
 
-/* ---------- project schedule ---------- */
-.tdd-dark{background:var(--spruce);color:var(--paper)}
-.tdd-dark .tdd-h2{color:var(--paper)}
-.tdd-dark .tdd-lede{color:rgba(247,248,245,.62)}
-.tdd-dark .tdd-eyebrow{color:var(--brass)}
-
+/* ---------- project schedule (dark-section styling comes from tdd.css) ---------- */
 .tdd-schedule{margin-top:56px;border-top:1px solid rgba(247,248,245,.2)}
 .tdd-row{
   display:grid;grid-template-columns:52px 1fr 1fr 160px;
@@ -287,19 +158,13 @@ a:focus-visible,button:focus-visible{
   .tdd-row__status{margin-top:8px}
 }
 
-/* photo slots */
+/* gallery imagery */
 .tdd-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
 @media(max-width:820px){.tdd-gallery{grid-template-columns:1fr}}
-.tdd-slot{
-  aspect-ratio:3/2;border:1px dashed rgba(168,130,60,.65);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--brass);text-align:center;padding:20px;
-}
-.tdd-slot span{color:rgba(247,248,245,.45);letter-spacing:.08em;text-transform:none;font-size:11px}
-.tdd-slot--light{border-color:rgba(168,130,60,.6)}
-.tdd-slot--light span{color:var(--slate)}
-.tdd-slot--wide{aspect-ratio:16/7;grid-column:1/-1}
+.tdd-gallery img{width:100%;height:100%;object-fit:cover;display:block;border:0}
+.tdd-shot{aspect-ratio:3/2}
+.tdd-shot--wide{grid-column:1/-1;aspect-ratio:16/7}
+.tdd-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
 
 /* ---------- process ---------- */
 .tdd-phases{margin-top:56px;border-top:1px solid var(--hair)}
@@ -336,26 +201,6 @@ a:focus-visible,button:focus-visible{
   display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;
   text-transform:uppercase;color:var(--brass);margin-bottom:6px;
 }
-
-footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28px 0 44px;font-size:12.5px}
-.tdd-foot__in{
-  max-width:1220px;margin:0 auto;padding:22px var(--gut) 0;
-  border-top:1px solid rgba(247,248,245,.16);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  font-family:var(--mono);letter-spacing:.06em;
-}
-.tdd-foot__link{color:var(--brass);text-decoration:none}
-.tdd-foot__link:hover{text-decoration:underline}
-
-/* ---------- brand logo in nav ---------- */
-.tdd-logo{height:34px;width:auto;display:block}
-@media(max-width:520px){.tdd-logo{height:28px}}
-
-/* ---------- real imagery ---------- */
-.tdd-gallery img{width:100%;height:100%;object-fit:cover;display:block;border:0}
-.tdd-shot{aspect-ratio:3/2}
-.tdd-shot--wide{grid-column:1/-1;aspect-ratio:16/7}
-.tdd-portrait{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
 
 /* ---------- inquiry form ---------- */
 .tdd-form{display:flex;flex-direction:column;gap:20px}
@@ -401,15 +246,6 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 .tdd-member h3{font-family:var(--display);font-weight:400;font-size:clamp(21px,2.2vw,26px);margin:0 0 5px;line-height:1.2}
 .tdd-member__role{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin:0 0 14px}
 .tdd-member__bio{color:var(--slate);font-size:15px;margin:0}
-
-/* reveal */
-.r{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
-.r.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){
-  .r{opacity:1;transform:none;transition:none}
-  html{scroll-behavior:auto}
-  .tdd-btn:hover,.tdd-row:hover{transform:none}
-}
 </style>
 </head>
 <body>
@@ -430,7 +266,7 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 </nav>
 
 <section class="tdd-videohero" id="top" aria-label="Teton Development &amp; Design showcase video">
-  <video id="tdd-hero-video" autoplay muted loop playsinline preload="auto" poster="media/home-poster.jpg">
+  <video id="tdd-hero-video" autoplay muted loop playsinline preload="metadata" poster="media/home-poster.jpg">
     <source src="media/home.mp4" type="video/mp4">
   </video>
 </section>
@@ -686,125 +522,7 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
   </div>
 </footer>
 
-<script>
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-/* ---- hero video: pause for reduced-motion visitors ---- */
-(function(){
-  var v=document.getElementById('tdd-hero-video');
-  if(!v) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    v.autoplay=false; v.pause();
-  }
-})();
-
-/* ---- mobile nav toggle ---- */
-(function(){
-  var nav = document.querySelector('.tdd-nav');
-  var btn = nav && nav.querySelector('.tdd-navtoggle');
-  var menu = document.getElementById('tdd-menu');
-  if(!nav || !btn || !menu) return;
-  btn.addEventListener('click', function(){
-    var open = nav.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  menu.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-    });
-  });
-})();
-
-/* ---- contour field: nested topographic rings, drawn in on load ---- */
-(function(){
-  var svg = document.getElementById('contour');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var W = 1000, H = 620;
-  svg.setAttribute('viewBox','0 0 '+W+' '+H);
-
-  function seeded(s){return function(){s=(s*16807)%2147483647;return s/2147483647;}}
-  var rnd = seeded(90210);
-
-  var cx = W*0.78, cy = H*0.42;
-  var rings = 13;
-  var offsets = [];
-  for(var k=0;k<5;k++) offsets.push(rnd()*Math.PI*2);
-
-  for(var i=0;i<rings;i++){
-    var base = 46 + i*40;
-    var pts = [];
-    for(var a=0;a<=360;a+=6){
-      var rad = a*Math.PI/180;
-      var wob = 1
-        + 0.16*Math.sin(rad*2 + offsets[0] + i*0.22)
-        + 0.10*Math.sin(rad*3 + offsets[1] - i*0.16)
-        + 0.06*Math.sin(rad*5 + offsets[2] + i*0.09);
-      var r = base*wob;
-      pts.push([cx + r*Math.cos(rad)*1.45, cy + r*Math.sin(rad)*0.82]);
-    }
-    var d = 'M'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join('L')+'Z';
-    var path = document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',d);
-    path.style.opacity = (0.30 - i*0.014).toFixed(3);
-    svg.appendChild(path);
-
-    if(!reduce){
-      var len = 2*Math.PI*base*1.15;
-      path.style.strokeDasharray = len;
-      path.style.strokeDashoffset = len;
-      path.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(.22,.61,.36,1) '+(i*0.075)+'s';
-      (function(p){ requestAnimationFrame(function(){ requestAnimationFrame(function(){ p.style.strokeDashoffset = 0; }); }); })(path);
-    }
-  }
-})();
-
-/* ---- scroll reveal ---- */
-(function(){
-  var els = document.querySelectorAll('.r');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
-    });
-  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
-  els.forEach(function(e){io.observe(e)});
-})();
-/* ---- inquiry form: AJAX submit to Formspree, inline success/error ---- */
-(function(){
-  var form = document.getElementById('tdd-inquiry');
-  if(!form) return;
-  var btn = form.querySelector('.tdd-submit');
-  var status = form.querySelector('.tdd-form__status');
-  var done = document.getElementById('tdd-done');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    status.hidden = true; status.textContent = '';
-    var label = btn.textContent;
-    btn.disabled = true; btn.textContent = 'Sending…';
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: {'Accept': 'application/json'}
-    }).then(function(res){
-      if(res.ok){
-        form.hidden = true;
-        done.hidden = false;
-        done.scrollIntoView({block:'nearest', behavior:'smooth'});
-      } else {
-        return res.json().then(function(d){
-          var msg = (d && d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || 'Something went wrong. Please email clancy@tetondd.com.';
-          throw new Error(msg);
-        });
-      }
-    }).catch(function(err){
-      status.hidden = false;
-      status.textContent = (err && err.message) ? err.message : 'Could not send — please email clancy@tetondd.com.';
-      btn.disabled = false; btn.textContent = label;
-    });
-  });
-})();
-</script>
+<script src="/js/tdd.js" defer></script>
 
 <!-- Vercel Web Analytics (enable "Analytics" in the Vercel project for data to flow) -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
