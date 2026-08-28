@@ -140,8 +140,9 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 .tdd-project__body{padding:20px 2px 4px}
 .tdd-project__name{font-family:var(--display);font-weight:400;font-size:clamp(20px,2.2vw,25px);margin:0 0 8px;line-height:1.2}
 .tdd-project__meta{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--slate);margin:0 0 13px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.tdd-chip{border:1px solid var(--hair);padding:3px 9px}
+.tdd-chip{border:1px solid var(--hair);padding:3px 9px;color:var(--slate)}
 .tdd-chip--live{border-color:var(--brass);color:var(--brass)}
+.tdd-chip--sale{background:var(--brass);border-color:var(--brass);color:var(--granite)}
 .tdd-project__blurb{color:var(--slate);font-size:15px;margin:0;max-width:46ch}
 
 /* reveal */
