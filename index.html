@@ -185,13 +185,6 @@ a:focus-visible,button:focus-visible{
 /* ---------- video hero band ---------- */
 .tdd-videohero{position:relative;width:100%;height:clamp(300px,64vh,760px);overflow:hidden;background:var(--granite)}
 .tdd-videohero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.tdd-videohero__mute{position:absolute;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:2;
-  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
-  background:rgba(15,20,25,.5);backdrop-filter:blur(6px);border:1px solid rgba(247,248,245,.4);
-  color:var(--paper);font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
-  padding:9px 14px;border-radius:2px;transition:background .2s}
-.tdd-videohero__mute:hover{background:rgba(15,20,25,.78)}
-.tdd-videohero__mute svg{width:14px;height:14px;fill:currentColor;display:block}
 
 /* ---------- hero ---------- */
 .tdd-hero{position:relative;overflow:hidden;padding:clamp(70px,11vw,150px) 0 clamp(56px,7vw,96px)}
@@ -440,10 +433,6 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
   <video id="tdd-hero-video" autoplay muted loop playsinline preload="auto" poster="media/home-poster.jpg">
     <source src="media/home.mp4" type="video/mp4">
   </video>
-  <button class="tdd-videohero__mute" id="tdd-mute" type="button" aria-pressed="false" aria-label="Turn sound on">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path id="tdd-mute-wave" d="M16.5 8.5a5 5 0 010 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <span id="tdd-mute-label">Sound on</span>
-  </button>
 </section>
 
 <header class="tdd-hero">
@@ -700,21 +689,13 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ---- hero video: mute toggle + reduced-motion fallback ---- */
+/* ---- hero video: pause for reduced-motion visitors ---- */
 (function(){
-  var v=document.getElementById('tdd-hero-video'), b=document.getElementById('tdd-mute');
-  if(!v||!b) return;
-  var lbl=document.getElementById('tdd-mute-label');
+  var v=document.getElementById('tdd-hero-video');
+  if(!v) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    v.autoplay=false; v.pause(); v.setAttribute('controls',''); b.style.display='none'; return;
+    v.autoplay=false; v.pause();
   }
-  b.addEventListener('click', function(){
-    v.muted=!v.muted;
-    if(!v.muted){ v.volume=1; if(v.paused){ v.play(); } }
-    b.setAttribute('aria-pressed', String(!v.muted));
-    b.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Mute video');
-    lbl.textContent = v.muted ? 'Sound on' : 'Mute';
-  });
 })();
 
 /* ---- mobile nav toggle ---- */
