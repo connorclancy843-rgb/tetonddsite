@@ -148,6 +148,11 @@ footer.tdd-foot{background:var(--granite);color:rgba(247,248,245,.42);padding:28
 .tdd-project__cta:hover{color:var(--brass)}
 a.tdd-project__imglink{display:block}
 
+/* area cross-links */
+.tdd-arealinks{display:flex;flex-wrap:wrap;gap:12px;margin:38px 0 0;padding:0;list-style:none}
+.tdd-arealinks a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--granite);border:1px solid var(--hair);padding:10px 16px;transition:border-color .2s,color .2s}
+.tdd-arealinks a:hover{border-color:var(--brass);color:var(--brass)}
+
 /* reveal */
 .r{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
 .r.in{opacity:1;transform:none}
